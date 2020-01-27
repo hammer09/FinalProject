@@ -3,7 +3,7 @@ package com.finalyearproject.pitchbooking.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+// Test Git Commit
 @Entity
 public class Booking {
     @Id
