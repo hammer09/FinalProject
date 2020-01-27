@@ -1,0 +1,18 @@
+<h1>Bookings List</h1>
+<table>
+    <thead>
+    <tr>
+        <th> Name </th>
+<!--        <th> Author </th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${bookings.empty}">
+        <td colspan="2"> No Bookings Available </td>
+    </tr>
+    <tr th:each="booking : ${bookings}">
+        <td><span th:text="${booking.name}"> Name </span></td>
+<!--        <td><span th:text="${book.author}"> Author </span></td>-->
+    </tr>
+    </tbody>
+</table>
