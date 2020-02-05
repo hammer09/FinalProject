@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset= "ISO-8859-1">
+    <title>Create New Booking</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Booking</h1>
+    <br/>
+    <form action= "#" th:action= "@{/save}" th:object="${booking}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Booking Name: </td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>Team Name: </td>
+                <td><input type="text" th:field="*{teamname}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">save</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
