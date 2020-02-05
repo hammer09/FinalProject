@@ -2,14 +2,17 @@ package com.finalyearproject.pitchbooking.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// Test Git Commit
+
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    //private String testBoi;
+    private String teamname;
 
     public Booking() {
     }
@@ -29,4 +32,21 @@ public class Booking {
     public void setId(Long id) {
         this.id = id;
     }
+
+    //public String getTestBoi() {
+    // return testBoi;
+    //}
+
+    //public void setTestBoi(String testBoi) {
+    //this.testBoi = testBoi;
+
+    public String getTeamname() {
+        return teamname;
+    }
+
+    public void setTeamname(String teamname) {
+        this.teamname = teamname;
+    }
+
+
 }

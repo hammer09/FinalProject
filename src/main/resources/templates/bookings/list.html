@@ -1,4 +1,4 @@
-<h1>Bookings List</h1>
+<h1 xmlns:th="http://www.thymeLeaf.org">Bookings List</h1>
 <table>
     <thead>
     <tr>
@@ -11,6 +11,7 @@
         <td colspan="2"> No Bookings Available </td>
     </tr>
     <tr th:each="booking : ${bookings}">
+        <td><span th:text="${booking.name}"> Name </span></td>
         <td><span th:text="${booking.name}"> Name </span></td>
 <!--        <td><span th:text="${book.author}"> Author </span></td>-->
     </tr>
