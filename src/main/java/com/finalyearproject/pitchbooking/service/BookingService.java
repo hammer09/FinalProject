@@ -29,6 +29,7 @@ public class BookingService {
     }
 
    public Booking get (Long id) {
+
         return bookingRepository.findById(id).get();
     }
 

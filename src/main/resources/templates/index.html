@@ -22,6 +22,12 @@
         <td th:text="${booking.id}">id</td>
         <td th:text="${booking.name}">name</td>
         <td th:text="${booking.teamname}">teamname</td>
+        <td>
+            <a th:href="@{'/edit/' + ${booking.id}}" >Edit</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{'/delete/' + ${booking.id}}" >delete</a>
+
+        </td>
     </tr>
     </tbody>
     </table>

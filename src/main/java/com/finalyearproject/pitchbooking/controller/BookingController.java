@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -52,9 +53,24 @@ public class BookingController {
     }
 
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-    public  String saveBooking(@ModelAttribute("booking") Booking booking){
+    public String saveBooking(@ModelAttribute("booking") Booking booking){
         bookingService.save(booking);
+        return "redirect:/";
+    }
 
+    @RequestMapping("/edit/{id}")
+    public ModelAndView showEditBookingForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_booking");
+
+        Booking booking = bookingService.get(id);
+        mav.addObject("booking", booking);
+
+        return mav;
+    }
+
+    @RequestMapping("/delete/{id}")
+    public  String deleteBooking(@PathVariable(name = "id")long id) {
+        bookingService.delete(id);
         return "redirect:/";
     }
 
