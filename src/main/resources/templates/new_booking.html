@@ -8,15 +8,15 @@
 <div align="center">
     <h1>Create New Booking</h1>
     <br/>
-    <form action="#"th:action="@{/save}" th:object="${booking}" method="post">
+    <form action="#" th:action="@{/save}" th:object="${booking}" method="post">
         <table border="0" cellpadding="10">
             <tr>
                 <td>Booking Name: </td>
-                <td><input th:action="text" th:field="*{name}" /></td>
+                <td><input type="text" th:field="*{name}" /></td>
             </tr>
             <tr>
                 <td>Team Name: </td>
-                <td><input th:action="text" th:field="*{teamname}" /></td>
+                <td><input type="text" th:field="*{teamname}" /></td>
             </tr>
             <tr>
                 <td colspan="2"><button type="submit">Save</button></td>

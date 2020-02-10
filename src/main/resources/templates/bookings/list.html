@@ -1,19 +1,28 @@
-<h1 xmlns:th="http://www.thymeLeaf.org">Bookings List</h1>
-<table>
-    <thead>
-    <tr>
-        <th> Name </th>
-<!--        <th> Author </th>-->
-    </tr>
-    </thead>
-    <tbody>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset= "ISO-8859-1">
+    <title>Booking List</title>
+</head>
+<body>
+<div align="center">
+    <h1>Bookings List</h1>
+    <br/>
+    <table border="2" cellpadding="10">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Team</th>
+        </tr>
     <tr th:if="${bookings.empty}">
         <td colspan="2"> No Bookings Available </td>
     </tr>
     <tr th:each="booking : ${bookings}">
-        <td><span th:text="${booking.name}"> Name </span></td>
-        <td><span th:text="${booking.name}"> Name </span></td>
-<!--        <td><span th:text="${book.author}"> Author </span></td>-->
+        <td><span th:text="${booking.id}">ID</span></td>
+        <td><span th:text="${booking.name}">Name</span></td>
+        <td><span th:text="${booking.teamname}">Team</span></td>
     </tr>
-    </tbody>
-</table>
+    </table>
+</div>
+</body>
+</html>

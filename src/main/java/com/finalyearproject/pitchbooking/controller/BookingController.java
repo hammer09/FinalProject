@@ -28,13 +28,13 @@ public class BookingController {
         return "bookings/list";
     }
 
-   // @PostMapping("/bookings/create")
-   // public String createBooking(@ModelAttribute Booking booking, BindingResult errors, Model model) {
+   @PostMapping("/bookings/create")
+    public String createBooking(@ModelAttribute Booking booking, BindingResult errors, Model model) {
 
-        //bookingService.createBooking(booking);
+        bookingService.createBooking(booking);
         //return view
-        //return "bookings/list";
-   // }
+        return "bookings/list";
+    }
 
     @RequestMapping("/")
     public String viewHomePage(Model model) {
