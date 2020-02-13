@@ -8,13 +8,15 @@ import javax.persistence.Id;
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
-    //private String testBoi;
     private String teamname;
 
     public Booking() {
+    }
+
+    public Booking(String name, String teamName) {
     }
 
     public String getName() {
@@ -30,15 +32,10 @@ public class Booking {
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
-    //public String getTestBoi() {
-    // return testBoi;
-    //}
-
-    //public void setTestBoi(String testBoi) {
-    //this.testBoi = testBoi;
 
     public String getTeamname() {
         return teamname;

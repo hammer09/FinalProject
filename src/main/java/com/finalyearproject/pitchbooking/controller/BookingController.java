@@ -13,10 +13,12 @@ import java.util.List;
 
 @Controller
 public class BookingController {
+
+    private final String BOOKING_LIST_URL = "/bookings/list";
     @Autowired
     private BookingService bookingService;
 
-    @GetMapping("/bookings/list")
+    @GetMapping(BOOKING_LIST_URL)
     public String getBookings(Model model) {
         // Get list of bookings from booking service
         List<Booking> bookings = bookingService.findAllBookings();
@@ -25,18 +27,18 @@ public class BookingController {
         model.addAttribute("bookings", bookings);
 
         // return view
-        return "bookings/list";
+        return BOOKING_LIST_URL;
     }
 
-   @PostMapping("/bookings/create")
-    public String createBooking(@ModelAttribute Booking booking, BindingResult errors, Model model) {
+   //@PostMapping("/bookings/create")
+       //public String createBooking(@ModelAttribute Booking booking, BindingResult errors, Model model) {
 
-        bookingService.createBooking(booking);
-        //return view
-        return "bookings/list";
-    }
+           //bookingService.createBooking(booking);
+           //return view
+          // return "bookings/list";
+    //}
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String viewHomePage(Model model) {
         List<Booking> listBookings = bookingService.listAll();
         model.addAttribute("listBookings", listBookings);
@@ -44,7 +46,7 @@ public class BookingController {
         return "index";
     }
 
-    @RequestMapping("/new")
+    @GetMapping("/new")
     public String showNewBookingForm(Model model) {
         Booking booking = new Booking();
         model.addAttribute("booking",booking);
@@ -57,6 +59,7 @@ public class BookingController {
         bookingService.save(booking);
         return "redirect:/";
     }
+
 
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditBookingForm(@PathVariable(name = "id") Long id) {
