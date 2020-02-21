@@ -5,10 +5,8 @@ import com.finalyearproject.pitchbooking.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 
 @Controller
@@ -30,15 +28,8 @@ public class BookingController {
         return BOOKING_LIST_URL;
     }
 
-   //@PostMapping("/bookings/create")
-       //public String createBooking(@ModelAttribute Booking booking, BindingResult errors, Model model) {
-
-           //bookingService.createBooking(booking);
-           //return view
-          // return "bookings/list";
-    //}
-
-    @GetMapping("/")
+    private final String VIEW_HOME_PAGE_URL = "/";
+    @GetMapping(VIEW_HOME_PAGE_URL )
     public String viewHomePage(Model model) {
         List<Booking> listBookings = bookingService.listAll();
         model.addAttribute("listBookings", listBookings);
@@ -46,7 +37,8 @@ public class BookingController {
         return "index";
     }
 
-    @GetMapping("/new")
+    private final String SHOW_NEW_BOOKING_FORM_URL = "/new";
+    @GetMapping(SHOW_NEW_BOOKING_FORM_URL)
     public String showNewBookingForm(Model model) {
         Booking booking = new Booking();
         model.addAttribute("booking",booking);
@@ -54,14 +46,16 @@ public class BookingController {
         return "new_booking";
     }
 
-    @RequestMapping (value = "/save", method = RequestMethod.POST)
+    private final String SAVE_BOOKING_URL = "/save";
+    @PostMapping (SAVE_BOOKING_URL)
     public String saveBooking(@ModelAttribute("booking") Booking booking){
         bookingService.save(booking);
+
         return "redirect:/";
     }
 
-
-    @RequestMapping("/edit/{id}")
+    private final String SHOW_EDIT_BOOKING_FORM_URL = "/edit/{id}";
+    @GetMapping(SHOW_EDIT_BOOKING_FORM_URL)
     public ModelAndView showEditBookingForm(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_booking");
 
@@ -71,10 +65,11 @@ public class BookingController {
         return mav;
     }
 
-    @RequestMapping("/delete/{id}")
+    private final String DELETE_BOOKING_URL = "/delete/{id}";
+    @GetMapping(DELETE_BOOKING_URL)
     public  String deleteBooking(@PathVariable(name = "id")long id) {
         bookingService.delete(id);
+
         return "redirect:/";
     }
-
 }
