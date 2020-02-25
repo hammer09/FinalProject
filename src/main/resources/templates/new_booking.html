@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeLeaf.org">
 <head>
     <meta charset= "ISO-8859-1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Create New Booking</title>
 </head>
 <body>
@@ -16,7 +18,18 @@
             </tr>
             <tr>
                 <td>Team Name: </td>
-                <td><input type="text" th:field="*{teamname}" /></td>
+                <td><input type="text" th:field="*{teamName}" /></td>
+            </tr>
+            <tr>
+                <td>Time: </td>
+                <td>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="time" autocomplete="off" th:field="*{time}"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td colspan="2"><button type="submit">Save</button></td>
@@ -24,5 +37,11 @@
         </table>
     </form>
 </div>
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
 </body>
 </html>

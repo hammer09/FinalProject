@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <h2>Booking Table </h2>
-    <a href="new">Create a New Booking</a>
+    <a class="btn btn-primary" href="new" role="button">Add Booking</a>
     <br/><br/>
     <table class="table table-bordered">
         <thead>
@@ -19,6 +19,7 @@
         <th>ID</th>
             <th>Name</th>
             <th>Team</th>
+            <th>Time</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -26,7 +27,8 @@
     <tr th:each="booking : ${listBookings}">
         <td th:text="${booking.id}">id</td>
         <td th:text="${booking.name}">name</td>
-        <td th:text="${booking.teamname}">teamname</td>
+        <td th:text="${booking.teamName}">teamName</td>
+        <td th:text="${booking.time}">Time</td>
         <td>
             <a th:href="@{'/edit/' + ${booking.id}}" >Update</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
