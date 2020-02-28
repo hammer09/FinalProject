@@ -14,11 +14,18 @@ public class Booking {
     private String name;
     private String teamname;
     private LocalDateTime time;
+    private String pitchtype;
 
-    public Booking() {
-    }
+    private PitchType type;
+
+    //public Booking() {
+    //}
 
     public Booking(String name, String teamName) {
+    }
+
+    public Booking() {
+
     }
 
     public String getName() {
@@ -39,11 +46,11 @@ public class Booking {
     }
 
 
-    public String getTeamName() {
+    public String getTeamname() {
         return teamname;
     }
 
-    public void setTeamName(String teamName) {
+    public void setTeamname(String teamname) {
         this.teamname = teamname;
     }
 
@@ -53,5 +60,13 @@ public class Booking {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+   public PitchType getType() {
+        return type;
+    }
+
+   public void setType(PitchType type) {
+        this.type = type;
     }
 }

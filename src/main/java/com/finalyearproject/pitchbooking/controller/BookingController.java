@@ -72,4 +72,56 @@ public class BookingController {
 
         return "redirect:/";
     }
+
+    //@GetMapping("/")
+    //public String home1() {
+        //return "/home";
+    //}
+
+    @GetMapping("/home")
+    public String home() {
+        return "/home";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "/admin";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "/user";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "/about";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "/contact";
+    }
+
+    @GetMapping("/expenditure")
+    public String expenditure() {
+        return "/expenditure";
+    }
+
+    @GetMapping("/registration")
+    public String registration () {
+        return "/registration";
+    }
+
+
+    @GetMapping("/login")
+    public String login() { return "/login";
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
+    }
+
+
 }
