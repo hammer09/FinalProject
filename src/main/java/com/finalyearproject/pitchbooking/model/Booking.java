@@ -1,9 +1,9 @@
 package com.finalyearproject.pitchbooking.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,13 +13,14 @@ public class Booking {
     private Long id;
     private String name;
     private String teamname;
+    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
+    private Pitch pitch;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @NotNull(message = "Date/time Required")
     private LocalDateTime time;
-    private String pitchtype;
 
-    private PitchType type;
 
-    //public Booking() {
-    //}
 
     public Booking(String name, String teamName) {
     }
@@ -62,11 +63,9 @@ public class Booking {
         this.time = time;
     }
 
-   public PitchType getType() {
-        return type;
-    }
-
-   public void setType(PitchType type) {
-        this.type = type;
+    public Pitch getPitch() {
+        return pitch;
     }
 }
+
+

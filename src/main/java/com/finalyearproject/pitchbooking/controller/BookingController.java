@@ -3,10 +3,17 @@ package com.finalyearproject.pitchbooking.controller;
 import com.finalyearproject.pitchbooking.model.Booking;
 import com.finalyearproject.pitchbooking.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -43,12 +50,20 @@ public class BookingController {
         Booking booking = new Booking();
         model.addAttribute("booking",booking);
 
-        return "new_booking";
+        return "bookings/create";
     }
 
     private final String SAVE_BOOKING_URL = "/save";
     @PostMapping (SAVE_BOOKING_URL)
-    public String saveBooking(@ModelAttribute("booking") Booking booking){
+    public String saveBooking(@Valid @ModelAttribute("booking")
+
+                                          Booking booking,
+            BindingResult bindingResult,Model model){
+
+        if (bindingResult.hasErrors()){
+            return "create";
+        }
+
         bookingService.save(booking);
 
         return "redirect:/";
@@ -61,7 +76,6 @@ public class BookingController {
 
         Booking booking = bookingService.get(id);
         mav.addObject("booking", booking);
-
         return mav;
     }
 
@@ -72,56 +86,4 @@ public class BookingController {
 
         return "redirect:/";
     }
-
-    //@GetMapping("/")
-    //public String home1() {
-        //return "/home";
-    //}
-
-    @GetMapping("/home")
-    public String home() {
-        return "/home";
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "/admin";
-    }
-
-    @GetMapping("/user")
-    public String user() {
-        return "/user";
-    }
-
-    @GetMapping("/about")
-    public String about() {
-        return "/about";
-    }
-
-    @GetMapping("/contact")
-    public String contact() {
-        return "/contact";
-    }
-
-    @GetMapping("/expenditure")
-    public String expenditure() {
-        return "/expenditure";
-    }
-
-    @GetMapping("/registration")
-    public String registration () {
-        return "/registration";
-    }
-
-
-    @GetMapping("/login")
-    public String login() { return "/login";
-    }
-
-    @GetMapping("/403")
-    public String error403() {
-        return "/error/403";
-    }
-
-
 }

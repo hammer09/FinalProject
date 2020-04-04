@@ -1,110 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/master-page}">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+
+</head>
 
 <body>
-<th:block layout:fragment="content">
-    <div class="row">
-        <div class="row">
-            <div class="col-md-12" style="margin-bottom: 10px">
-                <h1 style="color: darkblue">Search a Flight</h1>
-            </div>
-
+<h1>Create New Booking</h1>
+<form action="#" th:action="@{/save}" th:object="${booking}" method="post">
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teamname" class="col-sm-2 control-label">Team Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="teamname" th:field="*{teamname}" placeholder="Password">
         </div>
     </div>
 
-    <form action="/flight/search" method="post">
-        <div class="row">
+    <!-- <div class="form-group">
+         <label for="time" class="col-sm-2">Date/Time</label>
+         <div class="col-sm-10">
+         <input id="time" class="form-control" type="datetime-local" th:field="*{time}"/>
+             <span class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Date-time error</span>
+         </div>
+     </div>-->
 
-
-            <div class="from-group col-md-4">
-                <label class="col-form-label" for="departureAirport">From</label>
-                <select class="form-control" id="departureAirport" name="departureAirport">
-                    <option th:each="airport, i:${airports}" th:text="${airport.airportName}"
-                            th:value="${airport.airportId}">
-                    </option>
-                </select>
+    <div class="form-group">
+        <label for="time" class="col-sm-2">Date/Time</label>
+        <div class="input-group date col-sm-10" id="time" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#time" th:field="*{time}" />
+            <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
-
-            <div class="from-group col-md-4">
-                <label class="col-form-label" for="destinationAirport">To</label>
-                <span th:if="${AirportError!=null}" th:text="${AirportError}"
-                      class="badge badge-danger"></span>
-                <select class="form-control" id="destinationAirport" name="destinationAirport">
-                    <option th:each="airport, i:${airports}" th:text="${airport.airportName}"
-                            th:value="${airport.airportId}">
-                    </option>
-                </select>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label class="col-form-label" for="departureTime">Departure Time</label>
-                <input type="date" class="form-control" placeholder="" id="departureTime"
-                       name="departureTime" required>
-            </div>
-
-
-            <div class="form-group col-12">
-                <button type="submit" class="btn btn-success" style="float: right">Search</button>
-            </div>
-
+            <span class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Date-time error</span>
         </div>
-    </form>
-    <div class="row">
-        <th:block th:if="${notFound !=null}">
-            <div class="col-12">
-                <p style="text-align: center; margin-top: 30px; color: red; font-weight: bold">No Record Found!</p>
-            </div>
-        </th:block>
-        <th:block th:if="${flights!=null}">
-            <div class="row" style="margin-bottom: 10px">
-                <div class="col-md-6">
-                    <h1 style="color: darkblue">Result </h1>
-                </div>
-
-            </div>
-            <table class="table table-sm">
-                <thead>
-                <tr class="table-active">
-                    <th scope="col">ID</th>
-                    <th scope="col">Flight Number</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Departure time</th>
-                    <th scope="col">Arrival time</th>
-                    <th scope="col">Flight Charge</th>
-                    <th scope="col">Aircraft</th>
-                    <th scope="col">Available Seats</th>
-                </tr>
-                </thead>
-                <tbody>
-                <div th:each="flight, iterStat:${flights}">
-                    <tr style="background-color: #fdfdfd">
-                        <th scope="row" th:text="${flight.flightId}">Dark</th>
-                        <td th:text="${flight.flightNumber}"></td>
-                        <td th:text="${flight.departureAirport.airportName}"></td>
-                        <td th:text="${flight.destinationAirport.airportName}"></td>
-                        <td th:text="${flight.departureDate+' '+flight.departureTime}"></td>
-                        <td th:text="${flight.arrivalDate+' '+flight.arrivalTime}"></td>
-                        <td th:text="${flight.flightCharge}"></td>
-                        <td th:text="${flight.aircraft.model}"></td>
-                        <td th:text="${flight.aircraft.numberOfSeats - flight.passengers.size() +'/'+ flight.aircraft.numberOfSeats}"></td>
-                    </tr>
-                </div>
-                </tbody>
-            </table>
-
-        </th:block>
 
     </div>
+    </div>
+    <!--<div class="form-group">
+        <label for="teamname" class="col-sm-2 control-label">Pitch Type</label>
+        <div class="col-sm-10">
+            <select th:field="*{pitch.type}">
+                <option th:value="'GRASS'" th:text="Grass"></option>
+                <option th:value="'4G'" th:text="4G"></option>
+            </select>
+        </div>
+    </div>-->
 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Book</button>
+        </div>
+    </div>
+</form>
 
-</th:block>
+<script type="text/javascript">
+    $(function () {
+        $('#time').datetimepicker({
+            sideBySide: true,
+            format: 'YYYY-MM-DDTHH:ss',
+        });
+    });
+</script>
+
 </body>
 </html>

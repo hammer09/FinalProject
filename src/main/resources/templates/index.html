@@ -8,6 +8,7 @@
 </head>    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script> $(' [data-toggle= "confirmation]"j').confirmation();></script>
 <body>
 <div class="container">
     <h2>Booking Table </h2>
@@ -16,23 +17,25 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-        <th>ID</th>
-            <th>Name</th>
-            <th>Team</th>
-            <th>Time</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-    <tbody>
-    <tr th:each="booking : ${listBookings}">
-        <td th:text="${booking.id}">id</td>
+            <!--<th>ID</th>-->
+                <th>Name</th>
+                <th>Team</th>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+        <tbody>
+        <tr th:each="booking : ${listBookings}">
+            <!--<td th:text="${booking.id}">id</td>-->
         <td th:text="${booking.name}">name</td>
         <td th:text="${booking.teamname}">teamname</td>
         <td th:text="${booking.time}">Time</td>
+        <td th:text="${booking.pitch?.type}">Type</td>
         <td>
-            <a th:href="@{'/edit/' + ${booking.id}}" >Update</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a th:href="@{'/delete/' + ${booking.id}}" >Delete</a>
+            <a th:href="@{'/edit/' + ${booking.id}}"class="btn btn-primary" role="button">Update</a>
+
+            <a th:href="@{'/delete/' + ${booking.id}}"class="btn btn-danger" role="button">Delete</a>
         </td>
     </tr>
     </tbody>
