@@ -86,4 +86,31 @@ public class BookingController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/registration")
+    public String registration () {
+        return "/registration";
+    }
+
+
+    @GetMapping("/login")
+    public String login() { return "/login";
+    }
+
+    @GetMapping("/expenditure")
+    public String expenditure() {
+        return "/expenditure";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "/about";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "/contact";
+    }
+
+
 }

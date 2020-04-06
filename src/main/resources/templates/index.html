@@ -10,6 +10,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script> $(' [data-toggle= "confirmation]"j').confirmation();></script>
 <body>
+
+<div th:replace="fragments/header :: header"/>
+
 <div class="container">
     <h2>Booking Table </h2>
     <a class="btn btn-primary" href="new" role="button">Add Booking</a>
@@ -41,5 +44,6 @@
     </tbody>
     </table>
 </div>
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>
