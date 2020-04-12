@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<div th:replace="fragments/header :: header"/>
+    <meta charset="utf-8">
+    <title>School timetable</title>
+    <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 2px solid rgb(200,200,200);
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    td, th {
+      border: 1px solid rgb(190,190,190);
+      padding: 10px 20px;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    caption {
+      padding: 10px;
+    }
+    </style>
+</head>
+<body>
+<h1></h1>
+
+<table>
+   
+    <tr>
+        <th>Monday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Tuesday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Wednesday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Thursday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Friday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Saturday</th>
+        <td>10.00</td>
+        <td>11.00</td>
+        <td>12.00</td>
+
+    </tr>
+    <tr>
+        <th>Sunday</th>
+        <td>Closed</td>
+        <td>Closed</td>
+        <td>Closed</td>
+
+    </tr>
+</table>
+</body>
+</html>
