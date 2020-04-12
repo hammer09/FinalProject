@@ -20,6 +20,9 @@ import java.util.List;
 public class BookingController {
 
     private final String BOOKING_LIST_URL = "/bookings/list";
+    private final String EDIT_BOOKING_URL = "/bookings/edit/{id}";
+    private final String EDIT_BOOKING_TEMPLATE = "/bookings/edit";
+
     @Autowired
     private BookingService bookingService;
 
@@ -69,14 +72,15 @@ public class BookingController {
         return "redirect:/";
     }
 
-    private final String SHOW_EDIT_BOOKING_FORM_URL = "/edit/{id}";
-    @GetMapping(SHOW_EDIT_BOOKING_FORM_URL)
-    public ModelAndView showEditBookingForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_booking");
-
+    @GetMapping(EDIT_BOOKING_URL)
+    public String showEditBookingForm(@PathVariable(name = "id") Long id, Model model)  {
+        //Find booking by id
         Booking booking = bookingService.get(id);
-        mav.addObject("booking", booking);
-        return mav;
+
+        // Add booking to model
+        model.addAttribute("booking", booking);
+
+        return EDIT_BOOKING_TEMPLATE;
     }
 
     private final String DELETE_BOOKING_URL = "/delete/{id}";
