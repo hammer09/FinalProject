@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+
+</head>
+<body>
+<h1>Update Booking</h1>
+<form action="#" th:action="@{/update}" th:object="${booking}" method="post">
+    <!--<div class="form-group">
+        <label for="id" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" th:field="*{id}" readonly="readonly">
+        </div>
+    </div>-->
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teamname" class="col-sm-2 control-label">Team Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="teamname" th:field="*{teamname}" placeholder="Password">
+        </div>
+    </div>
+
+    <!-- <div class="form-group">
+         <label for="time" class="col-sm-2">Date/Time</label>
+         <div class="col-sm-10">
+         <input id="time" class="form-control" type="datetime-local" th:field="*{time}"/>
+             <span class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Date-time error</span>
+         </div>
+     </div>-->
+
+    <div class="form-group">
+        <label for="time" class="col-sm-2">Date/Time</label>
+        <div class="input-group date col-sm-10" id="time" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-target="#time" th:field="*{time}" />
+            <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+            <span class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Date-time error</span>
+        </div>
+    </div>
+    <!--<div class="form-group">
+        <label for="teamname" class="col-sm-2 control-label">Pitch Type</label>
+        <div class="col-sm-10">
+            <select th:field="*{pitch.type}">
+                <option th:value="'GRASS'" th:text="Grass"></option>
+                <option th:value="'4G'" th:text="4G"></option>
+            </select>
+        </div>
+    </div>-->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $('#time').datetimepicker({
+            sideBySide: true,
+            format: 'YYYY-MM-DDTHH:ss',
+        });
+    });
+</script>
+</body>
+</html>
