@@ -21,7 +21,6 @@ public class Booking {
     private LocalDateTime time;
 
 
-
     public Booking(String name, String teamName) {
     }
 
@@ -66,6 +65,12 @@ public class Booking {
     public Pitch getPitch() {
         return pitch;
     }
+
+   public void setPitch(Pitch pitch) {
+        this.pitch = pitch;
+    }
+
+
 }
 
 
