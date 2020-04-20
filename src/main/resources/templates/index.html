@@ -34,7 +34,7 @@
         <td th:text="${booking.name}">name</td>
         <td th:text="${booking.teamname}">teamname</td>
         <td th:text="${booking.time}">Time</td>
-        <td th:text="${booking.pitch?.type}">Type</td>
+        <td th:text="${booking.pitch?.type}"> Pitch Type</td>
         <td>
             <a th:href="@{'/edit/' + ${booking.id}}"class="btn btn-primary" role="button">Update</a>
 
