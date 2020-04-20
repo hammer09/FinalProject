@@ -16,16 +16,12 @@ public class Booking {
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
     private Pitch pitch;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @NotNull(message = "Date/time Required")
-    private LocalDateTime time;
-
-
-    public Booking(String name, String teamName) {
+    public Long getId() {
+        return id;
     }
 
-    public Booking() {
-
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -35,16 +31,6 @@ public class Booking {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-
-        this.id = id;
-    }
-
 
     public String getTeamname() {
         return teamname;
@@ -62,15 +48,46 @@ public class Booking {
         this.time = time;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @NotNull(message = "Date/time Required")
+    private LocalDateTime time;
+
+    //private Booking booking;
+
+    private boolean sameAsFormer(Pitch newPitch) {
+        if (this.pitch == null) {
+            return newPitch == null;
+        }
+        return this.pitch.equals(newPitch);
+    }
+
     public Pitch getPitch() {
         return pitch;
     }
 
-   public void setPitch(Pitch pitch) {
+    public void setPitch(Pitch pitch) {
+
+        // prevent endless loop
+
+        if (sameAsFormer(pitch)) {
+            return;
+        }
+        // set new pitch
+
+        Pitch oldpitch = this.pitch;
         this.pitch = pitch;
+
+        // remove from old stats
+
+        if (oldpitch != null) {
+            oldpitch.setBooking(null);
+        }
+        // set new stats
+        if (pitch != null) {
+            pitch.setBooking(this);
+        }
     }
-
-
 }
+
 
 
